@@ -8,7 +8,7 @@ PhotoManager::PhotoManager(QWidget *parent) :
     ui->setupUi(this);
 
     QString sPath = "/";
-    QStringList filters =  (QStringList() << "*.jpeg" << "*.jpg" << "*.png" << "*.PNG" << "*JPEG" << "*.JPG");
+    QStringList filters =  (QStringList() << "*.jpeg" << "*.jpg" << "*.png" << "*.PNG" << "*JPEG" << "*.JPG" << "*.GIF" << "*.gif" << "*.BMP" << "*.bmp" << "*.tiff" << "*.TIFF");
 
     dirModel = new QFileSystemModel(this);
     dirModel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
@@ -45,7 +45,7 @@ void PhotoManager::on_treeView_clicked(const QModelIndex &index)
     //ui->graphicsView->setWindowFilePath(filePath);
 }
 
-/* What happens when the button is clicked. */
+/* What happens when the button is clicked or entered. */
 void PhotoManager::on_listView_activated(const QModelIndex &index)
 {
     QString filePath = dirModel->fileInfo(index).absoluteFilePath();
