@@ -6,6 +6,14 @@ PhotoManager::PhotoManager(QWidget *parent) :
     ui(new Ui::PhotoManager)
 {
     ui->setupUi(this);
+    dirModel = new QFileSystemModel(this);
+    dirModel->setRootPath(QDir::rootPath());
+
+    fileModel = new QFileSystemModel(this);
+    fileModel->setRootPath(QDir::rootPath());
+
+    ui->treeView->setModel(dirModel);
+    ui->listView->setModel(fileModel);
 }
 
 PhotoManager::~PhotoManager()

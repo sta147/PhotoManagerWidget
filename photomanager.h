@@ -2,6 +2,9 @@
 #define PHOTOMANAGER_H
 
 #include <QMainWindow>
+#include <QtCore>
+#include <QtGui>
+#include <QFileSystemModel>
 
 namespace Ui {
 class PhotoManager;
@@ -16,6 +19,8 @@ public:
     ~PhotoManager();
 
 private:
+    QFileSystemModel *dirModel;
+    QFileSystemModel *fileModel;
     Ui::PhotoManager *ui;
 };
 
