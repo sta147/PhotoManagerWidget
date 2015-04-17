@@ -26,6 +26,11 @@ PhotoManager::PhotoManager(QWidget *parent) :
     ui->treeView->setModel(dirModel);
     ui->listView->setModel(fileModel);
     //ui->listView->
+
+
+    connect(ui->listView->selectionModel(), SIGNAL(currentChanged(const QModelIndex& , const QModelIndex&)), this, SLOT(listViewSelectionChangedHandler(const QModelIndex& , const QModelIndex&)));
+
+    connect(ui->treeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex& , const QModelIndex&)), this, SLOT(treeViewSelectionChangedHandler(const QModelIndex& , const QModelIndex&)));
 }
 
 PhotoManager::~PhotoManager()
@@ -69,4 +74,20 @@ void PhotoManager::on_listView_entered(const QModelIndex &index)
     scene->addItem(item);
     ui->graphicsView->setScene(scene);
     ui->graphicsView->fitInView(scene->itemsBoundingRect() ,Qt::KeepAspectRatio);
+}
+
+void PhotoManager::listViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous )
+{
+    QString filePath = dirModel->fileInfo(current).absoluteFilePath();
+
+    scene = new QGraphicsScene();
+    item = new QGraphicsPixmapItem(QPixmap(filePath));
+    scene->addItem(item);
+    ui->graphicsView->setScene(scene);
+    ui->graphicsView->fitInView(scene->itemsBoundingRect() ,Qt::KeepAspectRatio);
+}
+void PhotoManager::treeViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous )
+{
+    QString filePath = dirModel->fileInfo(current).absoluteFilePath();
+    ui->listView->setRootIndex(fileModel->setRootPath(filePath));
 }

@@ -29,6 +29,11 @@ private slots:
 
     void on_listView_entered(const QModelIndex &index);
 
+    void listViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous );
+
+    void treeViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous );
+
+
 private:
     Ui::PhotoManager *ui;
     QFileSystemModel *dirModel;

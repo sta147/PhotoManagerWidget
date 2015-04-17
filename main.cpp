@@ -4,7 +4,7 @@
 #include <QFileSystemModel>
 #include <QListView>
 #include <QTreeView>
-
+#include <QItemSelectionModel>
 
 int main(int argc, char *argv[])
 {
