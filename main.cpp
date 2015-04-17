@@ -10,7 +10,10 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-
+//    foreach( QFileInfo drive, QDir::drives() )
+//    {
+//    qDebug() << "Drive: " << drive.absolutePath();
+//    }
 
 //    QSplitter *splitter = new QSplitter;
 //    QFileSystemModel *imageModel = new QFileSystemModel;

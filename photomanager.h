@@ -5,6 +5,8 @@
 #include <QtCore>
 #include <QtGui>
 #include <QFileSystemModel>
+#include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
 
 namespace Ui {
 class PhotoManager;
@@ -18,10 +20,22 @@ public:
     explicit PhotoManager(QWidget *parent = 0);
     ~PhotoManager();
 
+private slots:
+    void on_treeView_clicked(const QModelIndex &index);
+
+    void on_listView_activated(const QModelIndex &index);
+
+    void on_listView_clicked(const QModelIndex &index);
+
+    void on_listView_entered(const QModelIndex &index);
+
 private:
+    Ui::PhotoManager *ui;
     QFileSystemModel *dirModel;
     QFileSystemModel *fileModel;
-    Ui::PhotoManager *ui;
+    QGraphicsScene *scene;
+    QGraphicsPixmapItem *item;
+
 };
 
 #endif // PHOTOMANAGER_H
