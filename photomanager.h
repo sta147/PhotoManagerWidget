@@ -8,6 +8,11 @@
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 
+#include <QMediaMetaData>
+#include <QImageReader>
+
+#include <slideshow.h>
+
 namespace Ui {
 class PhotoManager;
 }
@@ -34,12 +39,17 @@ private slots:
     void treeViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous );
 
 
+    void on_listView_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::PhotoManager *ui;
+    SlideShow slideShow;
+
     QFileSystemModel *dirModel;
     QFileSystemModel *fileModel;
     QGraphicsScene *scene;
     QGraphicsPixmapItem *item;
+    QImageReader reader;
 
 };
 
