@@ -35,15 +35,6 @@ PhotoManager::~PhotoManager()
     delete ui;
 }
 
-void PhotoManager::on_treeView_clicked(const QModelIndex &index)
-{
-    QString filePath = dirModel->fileInfo(index).absoluteFilePath();
-    QImageReader readerr(filePath);
-
-
-    ui->listView->setRootIndex(fileModel->setRootPath(filePath));
-    //ui->graphicsView->setWindowFilePath(filePath);
-}
 
 /* What happens when the button is clicked or entered. */
 void PhotoManager::on_listView_activated(const QModelIndex &index)

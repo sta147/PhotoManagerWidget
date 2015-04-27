@@ -1,9 +1,12 @@
 #include "photomanager.h"
 #include <QApplication>
 #include <QSplitter>
-#include <QFileSystemModel>
+//#include <QFileSystemModel>
 #include <QListView>
 #include <QTreeView>
+
+
+
 #include <QItemSelectionModel>
 
 int main(int argc, char *argv[])

@@ -2,6 +2,8 @@
 #define SLIDESHOW_H
 
 #include <QWidget>
+#include <QtCore>
+#include <QtGui>
 
 namespace Ui {
 class SlideShow;

@@ -1,17 +1,17 @@
 #ifndef PHOTOMANAGER_H
 #define PHOTOMANAGER_H
 
+#include <slideshow.h>
+
 #include <QMainWindow>
-#include <QtCore>
-#include <QtGui>
 #include <QFileSystemModel>
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 
 #include <QMediaMetaData>
 #include <QImageReader>
+#include <QMetaObject>
 
-#include <slideshow.h>
 
 namespace Ui {
 class PhotoManager;
@@ -26,7 +26,7 @@ public:
     ~PhotoManager();
 
 private slots:
-    void on_treeView_clicked(const QModelIndex &index);
+//    void on_treeView_clicked(const QModelIndex &index);
 
     void on_listView_activated(const QModelIndex &index);
 
@@ -42,11 +42,12 @@ private slots:
     void on_listView_doubleClicked(const QModelIndex &index);
 
 private:
-    Ui::PhotoManager *ui;
+
     SlideShow slideShow;
 
     QFileSystemModel *dirModel;
     QFileSystemModel *fileModel;
+    Ui::PhotoManager *ui;
     QGraphicsScene *scene;
     QGraphicsPixmapItem *item;
     QImageReader reader;
