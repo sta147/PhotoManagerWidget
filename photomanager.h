@@ -12,6 +12,11 @@
 #include <QImageReader>
 #include <QMetaObject>
 
+//OpenCv includes...
+#include <cv.h>
+#include <cxcore.h>
+#include <highgui.h>
+
 
 namespace Ui {
 class PhotoManager;
