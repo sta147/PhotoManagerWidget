@@ -13,10 +13,13 @@
 #include <QMetaObject>
 
 //OpenCv includes...
-#include <cv.h>
-#include <cxcore.h>
-#include <highgui.h>
+#include <opencv2/core/core.hpp>
+#include <opencv/cv.h>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 
+using namespace std;
+using namespace cv;
 
 namespace Ui {
 class PhotoManager;
@@ -26,9 +29,8 @@ class PhotoManager : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    explicit PhotoManager(QWidget *parent = 0);
-    ~PhotoManager();
+public slots:
+    void processFrameAndUpdateGUI();
 
 private slots:
 //    void on_treeView_clicked(const QModelIndex &index);
@@ -46,6 +48,10 @@ private slots:
 
     void on_listView_doubleClicked(const QModelIndex &index);
 
+public:
+    explicit PhotoManager(QWidget *parent = 0);
+    ~PhotoManager();
+
 private:
 
     SlideShow slideShow;
@@ -56,6 +62,18 @@ private:
     QGraphicsScene *scene;
     QGraphicsPixmapItem *item;
     QImageReader reader;
+
+//    cv::VideoCapture webcam;
+//    cv::Mat originalMat;
+//    cv::Mat processedMat;
+
+    QImage qimgOriginal;
+    QImage qimgProcessed;
+
+    std::vector<cv::Vec3f> vecCircles;
+    std::vector<cv::Vec3f>::iterator itrCircles;
+
+    QTimer* terTimer;
 
 };
 

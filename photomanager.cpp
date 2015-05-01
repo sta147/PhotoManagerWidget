@@ -28,11 +28,26 @@ PhotoManager::PhotoManager(QWidget *parent) :
     connect(ui->listView->selectionModel(), SIGNAL(currentChanged(const QModelIndex& , const QModelIndex&)), this, SLOT(listViewSelectionChangedHandler(const QModelIndex& , const QModelIndex&)));
 
     connect(ui->treeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex& , const QModelIndex&)), this, SLOT(treeViewSelectionChangedHandler(const QModelIndex& , const QModelIndex&)));
+
+    //Opencv
+
+//    webcam.open(0);
+//    if(webcam.isOpened()==false){
+//        ui->label->setText("error: webcam not accessed.");
+//        return;
+//    }
+//    terTimer = new QTimer(this);
+//    connect(terTimer,SIGNAL (timeout()), this, SLOT(processFrameAndUpdateGUI()));
+//    terTimer->start(20);
 }
 
 PhotoManager::~PhotoManager()
 {
     delete ui;
+}
+
+void PhotoManager::processFrameAndUpdateGUI(){
+
 }
 
 
