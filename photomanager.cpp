@@ -106,7 +106,7 @@ void PhotoManager::get_Meta_Data(const QString &filePath)
 
         Exiv2::ExifData &exifData = image->exifData();
         if (exifData.empty()) {
-//            std::string error(argv[1]);
+//            std::string error();
 //            error += ": No Exif data found in the file";
 //            throw Exiv2::Error(1, error);
         }
