@@ -1,7 +1,15 @@
 #ifndef PHOTOMANAGER_H
 #define PHOTOMANAGER_H
 
+//OpenCv includes...
+//#include <opencv2/highgui/highgui.hpp>
+//#include <opencv2/imgproc/imgproc.hpp>
+//#include <opencv2/core/core.hpp>
+#include <opencv2/opencv.hpp>
+
 #include <slideshow.h>
+#include <opencv/cv.h>
+#include <QDebug>
 
 #include <QMainWindow>
 #include <QFileSystemModel>
@@ -11,12 +19,13 @@
 #include <QMediaMetaData>
 #include <QImageReader>
 #include <QMetaObject>
+#include <exiv2/exif.hpp>
+#include <exiv2/image.hpp>
+#include <exiv2/properties.hpp>
+#include <c++/v1/string>
+#include <exiv2/metadatum.hpp>
+#include <exiv2/easyaccess.hpp>
 
-//OpenCv includes...
-#include <opencv2/core/core.hpp>
-#include <opencv/cv.h>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
 
 using namespace std;
 using namespace cv;
@@ -48,6 +57,7 @@ private slots:
 
     void on_listView_doubleClicked(const QModelIndex &index);
 
+    void get_Meta_Data(const QString &filePath);
 public:
     explicit PhotoManager(QWidget *parent = 0);
     ~PhotoManager();

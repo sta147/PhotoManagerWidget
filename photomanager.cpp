@@ -36,9 +36,9 @@ PhotoManager::PhotoManager(QWidget *parent) :
 //        ui->label->setText("error: webcam not accessed.");
 //        return;
 //    }
-//    terTimer = new QTimer(this);
-//    connect(terTimer,SIGNAL (timeout()), this, SLOT(processFrameAndUpdateGUI()));
-//    terTimer->start(20);
+    terTimer = new QTimer(this);
+    connect(terTimer,SIGNAL (timeout()), this, SLOT(processFrameAndUpdateGUI()));
+    terTimer->start(20);
 }
 
 PhotoManager::~PhotoManager()
@@ -67,12 +67,12 @@ void PhotoManager::on_listView_clicked(const QModelIndex &index)
     scene->addItem(item);
     ui->graphicsView->setScene(scene);
     ui->graphicsView->fitInView(scene->itemsBoundingRect() ,Qt::KeepAspectRatio);
+    get_Meta_Data(filePath);
 }
 
 void PhotoManager::on_listView_entered(const QModelIndex &index)
 {
 //    slideShow.showFullScreen();
-//    slideShow.show();
 }
 
 void PhotoManager::listViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous )
@@ -84,6 +84,7 @@ void PhotoManager::listViewSelectionChangedHandler( const QModelIndex & current,
     scene->addItem(item);
     ui->graphicsView->setScene(scene);
     ui->graphicsView->fitInView(scene->itemsBoundingRect() ,Qt::KeepAspectRatio);
+    get_Meta_Data(filePath);
 }
 void PhotoManager::treeViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous )
 {
@@ -95,4 +96,28 @@ void PhotoManager::on_listView_doubleClicked(const QModelIndex &index)
 {
     slideShow.showFullScreen();
     slideShow.show();
+}
+
+void PhotoManager::get_Meta_Data(const QString &filePath)
+{
+    Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(filePath.toStdString());
+        assert(image.get() != 0);
+        image->readMetadata();
+
+        Exiv2::ExifData &exifData = image->exifData();
+        if (exifData.empty()) {
+//            std::string error(argv[1]);
+//            error += ": No Exif data found in the file";
+//            throw Exiv2::Error(1, error);
+        }
+        QString labelString;
+        Exiv2::ExifData::const_iterator end = exifData.end();
+        for (Exiv2::ExifData::const_iterator i = exifData.begin(); i != end; ++i) {
+                    QString tagExiv = QString(i->key().c_str());
+                    Exiv2::Exifdatum exifDatum = exifData[tagExiv.toStdString()];
+                        labelString += tagExiv +": \t " + QString::fromStdString(exifDatum.toString()) +"\n";
+                }
+        qDebug()<<labelString;
+//ui->label->setText(labelString);
+ui->textBrowser->setText(labelString);
 }
