@@ -1,7 +1,6 @@
 #include "photomanager.h"
 #include <QApplication>
 #include <QSplitter>
-//#include <QFileSystemModel>
 #include <QListView>
 #include <QTreeView>
 
@@ -22,10 +21,10 @@ int main(int argc, char *argv[])
     PhotoManager w;
     w.show();
 
-//    char* imageName = argv[1];
+    char* imageName = "/Users/kayani/Desktop/realfunc.jpg";
 
-//     Mat image;
-//     image = imread( imageName, 1 );
+     Mat image;
+     image = imread( imageName, 1 );
 
 //     if( argc != 2 || !image.data )
 //     {
@@ -33,24 +32,24 @@ int main(int argc, char *argv[])
 //       return -1;
 //     }
 
-//     Mat gray_image;
-//     cvtColor( image, gray_image, CV_BGR2GRAY );
+     Mat gray_image;
+     cvtColor( image, gray_image, CV_BGR2GRAY );
 
-//     imwrite( "../../images/Gray_Image.jpg", gray_image );
+     imwrite( "../../images/Gray_Image.jpg", gray_image );
 
-//     namedWindow( imageName, CV_WINDOW_AUTOSIZE );
-//     namedWindow( "Gray image", CV_WINDOW_AUTOSIZE );
+     namedWindow( imageName, CV_WINDOW_AUTOSIZE );
+     namedWindow( "Gray image", CV_WINDOW_AUTOSIZE );
 
-//     imshow( imageName, image );
-//     imshow( "Gray image", gray_image );
+     imshow( imageName, image );
+     imshow( "Gray image", gray_image );
 
-//     waitKey(0);
+     waitKey(0);
 
-//    cv::Mat mat;
-//        mat = cv::imread("img.JPG");
-//        cvNamedWindow("hello");
-//        cv::imshow("hello",mat);
+    cv::Mat mat;
+        mat = cv::imread("img.JPG");
+        cvNamedWindow("hello");
+        cv::imshow("hello",mat);
 
-//        cvWaitKey(0);
+        cvWaitKey(0);
     return a.exec();
 }
