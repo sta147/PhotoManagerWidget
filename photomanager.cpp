@@ -24,7 +24,6 @@ PhotoManager::PhotoManager(QWidget *parent) :
     ui->treeView->setModel(dirModel);
     ui->listView->setModel(fileModel);
 
-
     connect(ui->listView->selectionModel(), SIGNAL(currentChanged(const QModelIndex& , const QModelIndex&)), this, SLOT(listViewSelectionChangedHandler(const QModelIndex& , const QModelIndex&)));
 
     connect(ui->treeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex& , const QModelIndex&)), this, SLOT(treeViewSelectionChangedHandler(const QModelIndex& , const QModelIndex&)));

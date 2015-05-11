@@ -120,3 +120,29 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../us
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/release/opencv_video.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/debug/opencv_video.lib
 else:unix: PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/libopencv_video.a
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../usr/local/lib/release/ -lopencv_video
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../usr/local/lib/debug/ -lopencv_video
+else:unix: LIBS += -L$$PWD/../../../usr/local/lib/ -lopencv_video
+
+INCLUDEPATH += $$PWD/../../../usr/local/include
+DEPENDPATH += $$PWD/../../../usr/local/include
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/release/libopencv_video.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/debug/libopencv_video.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/release/opencv_video.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/debug/opencv_video.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/libopencv_video.a
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../usr/local/lib/release/ -lopencv_videoio
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../usr/local/lib/debug/ -lopencv_videoio
+else:unix: LIBS += -L$$PWD/../../../usr/local/lib/ -lopencv_videoio
+
+INCLUDEPATH += $$PWD/../../../usr/local/include
+DEPENDPATH += $$PWD/../../../usr/local/include
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/release/libopencv_videoio.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/debug/libopencv_videoio.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/release/opencv_videoio.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/debug/opencv_videoio.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/libopencv_videoio.a
