@@ -1,2 +1,6 @@
-<RCC/>
-
+<RCC>
+    <qresource prefix="/">
+        <file>backarrow-icon.png</file>
+        <file>rightarrow-icon.png</file>
+    </qresource>
+</RCC>

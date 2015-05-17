@@ -9,7 +9,6 @@ QT += widgets
 QT += multimedia
 
 
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.10
@@ -38,9 +37,7 @@ CONFIG += gui
 
 CONFIG += qt
 
-
 QT += core
-
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../usr/local/Cellar/exiv2/0.24/lib/release/ -lexiv2
@@ -146,3 +143,8 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../us
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/release/opencv_videoio.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/debug/opencv_videoio.lib
 else:unix: PRE_TARGETDEPS += $$PWD/../../../usr/local/lib/libopencv_videoio.a
+
+DISTFILES +=
+
+RESOURCES += \
+    images.qrc

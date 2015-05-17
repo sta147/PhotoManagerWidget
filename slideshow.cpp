@@ -8,7 +8,6 @@ SlideShow::SlideShow(QWidget *parent) :
     ui->setupUi(this);
 }
 
-SlideShow::~SlideShow()
-{
+SlideShow::~SlideShow() {
     delete ui;
 }

@@ -28,20 +28,12 @@ PhotoManager::PhotoManager(QWidget *parent) :
 
     connect(ui->treeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex& , const QModelIndex&)), this, SLOT(treeViewSelectionChangedHandler(const QModelIndex& , const QModelIndex&)));
 
-    //Opencv
-
-//    webcam.open(0);
-//    if(webcam.isOpened()==false){
-//        ui->label->setText("error: webcam not accessed.");
-//        return;
-//    }
     terTimer = new QTimer(this);
     connect(terTimer,SIGNAL (timeout()), this, SLOT(processFrameAndUpdateGUI()));
     terTimer->start(20);
 }
 
-PhotoManager::~PhotoManager()
-{
+PhotoManager::~PhotoManager() {
     delete ui;
 }
 
@@ -51,8 +43,7 @@ void PhotoManager::processFrameAndUpdateGUI(){
 
 
 /* What happens when the button is clicked or entered. */
-void PhotoManager::on_listView_activated(const QModelIndex &index)
-{
+void PhotoManager::on_listView_activated(const QModelIndex &index) {
         slideShow.showFullScreen();
 }
 
@@ -69,13 +60,11 @@ void PhotoManager::on_listView_clicked(const QModelIndex &index)
     get_Meta_Data(filePath);
 }
 
-void PhotoManager::on_listView_entered(const QModelIndex &index)
-{
+void PhotoManager::on_listView_entered(const QModelIndex &index) {
 //    slideShow.showFullScreen();
 }
 
-void PhotoManager::listViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous )
-{
+void PhotoManager::listViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous ) {
     QString filePath = dirModel->fileInfo(current).absoluteFilePath();
 
     scene = new QGraphicsScene();
@@ -85,20 +74,17 @@ void PhotoManager::listViewSelectionChangedHandler( const QModelIndex & current,
     ui->graphicsView->fitInView(scene->itemsBoundingRect() ,Qt::KeepAspectRatio);
     get_Meta_Data(filePath);
 }
-void PhotoManager::treeViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous )
-{
+void PhotoManager::treeViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous ) {
     QString filePath = dirModel->fileInfo(current).absoluteFilePath();
     ui->listView->setRootIndex(fileModel->setRootPath(filePath));
 }
 
-void PhotoManager::on_listView_doubleClicked(const QModelIndex &index)
-{
+void PhotoManager::on_listView_doubleClicked(const QModelIndex &index) {
     slideShow.showFullScreen();
     slideShow.show();
 }
 
-void PhotoManager::get_Meta_Data(const QString &filePath)
-{
+void PhotoManager::get_Meta_Data(const QString &filePath) {
     Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(filePath.toStdString());
         assert(image.get() != 0);
         image->readMetadata();

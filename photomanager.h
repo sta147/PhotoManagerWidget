@@ -2,9 +2,6 @@
 #define PHOTOMANAGER_H
 
 //OpenCv includes...
-//#include <opencv2/highgui/highgui.hpp>
-//#include <opencv2/imgproc/imgproc.hpp>
-//#include <opencv2/core/core.hpp>
 #include <opencv2/opencv.hpp>
 
 #include <slideshow.h>
@@ -54,7 +51,6 @@ private slots:
 
     void treeViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous );
 
-
     void on_listView_doubleClicked(const QModelIndex &index);
 
     void get_Meta_Data(const QString &filePath);
@@ -73,9 +69,9 @@ private:
     QGraphicsPixmapItem *item;
     QImageReader reader;
 
-//    cv::VideoCapture webcam;
-//    cv::Mat originalMat;
-//    cv::Mat processedMat;
+    cv::VideoCapture webcam;
+    cv::Mat originalMat;
+    cv::Mat processedMat;
 
     QImage qimgOriginal;
     QImage qimgProcessed;
