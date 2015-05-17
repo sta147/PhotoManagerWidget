@@ -10,11 +10,10 @@
 
 #include <QMainWindow>
 #include <QFileSystemModel>
-#include <QGraphicsScene>
-#include <QGraphicsPixmapItem>
+
 
 #include <QMediaMetaData>
-#include <QImageReader>
+//#include <QImageReader>
 #include <QMetaObject>
 #include <exiv2/exif.hpp>
 #include <exiv2/image.hpp>
@@ -81,6 +80,8 @@ private:
 
     QTimer* terTimer;
 
+    QString currentFile;
+    QString currentFilePath;
 };
 
 #endif // PHOTOMANAGER_H

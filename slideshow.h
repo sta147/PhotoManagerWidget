@@ -5,6 +5,10 @@
 #include <QtCore>
 #include <QtGui>
 
+#include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
+#include <QImageReader>
+
 namespace Ui {
 class SlideShow;
 }
@@ -12,6 +16,11 @@ class SlideShow;
 class SlideShow : public QWidget
 {
     Q_OBJECT
+public slots:
+           void showImage(const QString & currentFile, const QString & currentFilePath);
+
+private slots:
+
 
 public:
     explicit SlideShow(QWidget *parent = 0);
@@ -19,6 +28,10 @@ public:
 
 private:
     Ui::SlideShow *ui;
+
+    QGraphicsScene *scene1;
+    QGraphicsPixmapItem *item1;
+    QImageReader reader1;
 };
 
 #endif // SLIDESHOW_H

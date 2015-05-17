@@ -27,7 +27,7 @@ PhotoManager::PhotoManager(QWidget *parent) :
     connect(ui->listView->selectionModel(), SIGNAL(currentChanged(const QModelIndex& , const QModelIndex&)), this, SLOT(listViewSelectionChangedHandler(const QModelIndex& , const QModelIndex&)));
 
     connect(ui->treeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex& , const QModelIndex&)), this, SLOT(treeViewSelectionChangedHandler(const QModelIndex& , const QModelIndex&)));
-
+    currentFilePath = QString();
     terTimer = new QTimer(this);
     connect(terTimer,SIGNAL (timeout()), this, SLOT(processFrameAndUpdateGUI()));
     terTimer->start(20);
@@ -44,7 +44,20 @@ void PhotoManager::processFrameAndUpdateGUI(){
 
 /* What happens when the button is clicked or entered. */
 void PhotoManager::on_listView_activated(const QModelIndex &index) {
-        slideShow.showFullScreen();
+    QString filePath = dirModel->fileInfo(index).absoluteFilePath();
+
+    scene = new QGraphicsScene();
+
+    item = new QGraphicsPixmapItem(QPixmap(filePath));
+    scene->addItem(item);
+    ui->graphicsView->setScene(scene);
+    ui->graphicsView->fitInView(scene->itemsBoundingRect() ,Qt::KeepAspectRatio);
+    currentFile = filePath;
+//    get_Meta_Data(filePath);
+//        currentFile = &filePath;
+        slideShow.showImage(filePath, currentFilePath);
+//        slideShow.showFullScreen();
+
 }
 
 void PhotoManager::on_listView_clicked(const QModelIndex &index)
@@ -57,6 +70,7 @@ void PhotoManager::on_listView_clicked(const QModelIndex &index)
     scene->addItem(item);
     ui->graphicsView->setScene(scene);
     ui->graphicsView->fitInView(scene->itemsBoundingRect() ,Qt::KeepAspectRatio);
+    currentFile = filePath;
     get_Meta_Data(filePath);
 }
 
@@ -72,11 +86,13 @@ void PhotoManager::listViewSelectionChangedHandler( const QModelIndex & current,
     scene->addItem(item);
     ui->graphicsView->setScene(scene);
     ui->graphicsView->fitInView(scene->itemsBoundingRect() ,Qt::KeepAspectRatio);
+    currentFile = filePath;
     get_Meta_Data(filePath);
 }
 void PhotoManager::treeViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous ) {
     QString filePath = dirModel->fileInfo(current).absoluteFilePath();
     ui->listView->setRootIndex(fileModel->setRootPath(filePath));
+    currentFilePath = filePath;
 }
 
 void PhotoManager::on_listView_doubleClicked(const QModelIndex &index) {

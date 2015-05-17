@@ -11,3 +11,23 @@ SlideShow::SlideShow(QWidget *parent) :
 SlideShow::~SlideShow() {
     delete ui;
 }
+
+void SlideShow::showImage(const QString &currentFile,const QString &currentFilePath){
+
+    scene1 = new QGraphicsScene();
+
+    item1 = new QGraphicsPixmapItem(QPixmap(currentFile));
+    scene1->addItem(item1);
+    ui->graphicsView->setScene(scene1);
+    ui->graphicsView->fitInView(scene1->itemsBoundingRect() ,Qt::KeepAspectRatio);
+}
+
+//SlideShow::paintEvent(QPaintEvent *)
+//{
+
+//}
+
+void SlideShow::on_NextImageBtn_pressed()
+{
+
+}
