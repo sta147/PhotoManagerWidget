@@ -61,10 +61,7 @@ int main(int argc, char *argv[])
 
 //            cvCvtColor(src, hsv_image, CV_BGR2HSV);
 
-////                cvNamedWindow( "hsv-img",1); cvShowImage( "hsv-img", hsv_image);
-
 //            cvInRangeS (hsv_image, hsv_min, hsv_max, hsv_mask);
-////              cvInRangeS (hsv_image, hsv_min, hsv_max, hsv_mask);
 
 //                cvNamedWindow( "hsv-msk",1); cvShowImage( "hsv-msk", hsv_mask); hsv_mask->origin = 1;
 

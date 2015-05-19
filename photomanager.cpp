@@ -53,13 +53,11 @@ void PhotoManager::on_listView_activated(const QModelIndex &index) {
     ui->graphicsView->setScene(scene);
     ui->graphicsView->fitInView(scene->itemsBoundingRect() ,Qt::KeepAspectRatio);
     currentFile = filePath;
-//    get_Meta_Data(filePath);
-//        currentFile = &filePath;
         slideShow.showImage(filePath, currentFilePath);
-//        slideShow.showFullScreen();
 
 }
 
+/* Method for listening to listView for clicks.*/
 void PhotoManager::on_listView_clicked(const QModelIndex &index)
 {
     QString filePath = dirModel->fileInfo(index).absoluteFilePath();
@@ -73,11 +71,12 @@ void PhotoManager::on_listView_clicked(const QModelIndex &index)
     currentFile = filePath;
     get_Meta_Data(filePath);
 }
-
+/* Method for listening to listView keyboard select.*/
 void PhotoManager::on_listView_entered(const QModelIndex &index) {
 //    slideShow.showFullScreen();
 }
 
+/* Method for listening to listView for selection change.*/
 void PhotoManager::listViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous ) {
     QString filePath = dirModel->fileInfo(current).absoluteFilePath();
 
@@ -89,17 +88,19 @@ void PhotoManager::listViewSelectionChangedHandler( const QModelIndex & current,
     currentFile = filePath;
     get_Meta_Data(filePath);
 }
+/* Method for listening to Treeview for selection change.*/
 void PhotoManager::treeViewSelectionChangedHandler( const QModelIndex & current, const QModelIndex & previous ) {
     QString filePath = dirModel->fileInfo(current).absoluteFilePath();
     ui->listView->setRootIndex(fileModel->setRootPath(filePath));
     currentFilePath = filePath;
 }
-
+/* Method for listening to listView for double clicks.*/
 void PhotoManager::on_listView_doubleClicked(const QModelIndex &index) {
     slideShow.showFullScreen();
     slideShow.show();
 }
 
+/* Method for Meta Data via the use of the exiv2 Library.*/
 void PhotoManager::get_Meta_Data(const QString &filePath) {
     Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(filePath.toStdString());
         assert(image.get() != 0);

@@ -12,6 +12,7 @@ SlideShow::~SlideShow() {
     delete ui;
 }
 
+/* Method for displaying images. */
 void SlideShow::showImage(const QString &currentFile,const QString &currentFilePath){
 
     scene1 = new QGraphicsScene();
@@ -21,11 +22,6 @@ void SlideShow::showImage(const QString &currentFile,const QString &currentFileP
     ui->graphicsView->setScene(scene1);
     ui->graphicsView->fitInView(scene1->itemsBoundingRect() ,Qt::KeepAspectRatio);
 }
-
-//SlideShow::paintEvent(QPaintEvent *)
-//{
-
-//}
 
 void SlideShow::on_NextImageBtn_pressed()
 {

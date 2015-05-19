@@ -21,6 +21,7 @@ public slots:
 
 private slots:
 
+           void on_NextImageBtn_pressed();
 
 public:
     explicit SlideShow(QWidget *parent = 0);

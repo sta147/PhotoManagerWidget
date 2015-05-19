@@ -13,7 +13,6 @@
 
 
 #include <QMediaMetaData>
-//#include <QImageReader>
 #include <QMetaObject>
 #include <exiv2/exif.hpp>
 #include <exiv2/image.hpp>
